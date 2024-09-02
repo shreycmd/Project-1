@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { Metadata } from "next"
 import { ClerkProvider } from "@clerk/nextjs"
 import { dark } from "@clerk/themes"
+import Provide from "./Provide"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -21,6 +22,8 @@ export default function RootLayout({ children }: {children: React.ReactNode}) {
       baseTheme:dark,
       variables:{colorPrimary:"#3371FF",
         fontSize:'16px'
+      },layout:{
+        unsafe_disableDevelopmentModeWarnings:true
       }
     }}>
     <html lang="en" suppressHydrationWarning>
@@ -31,7 +34,9 @@ export default function RootLayout({ children }: {children: React.ReactNode}) {
           fontSans.variable
         )}
       >
+        <Provide >
         {children}
+        </Provide>
       </body>
     </html>
     </ClerkProvider>
